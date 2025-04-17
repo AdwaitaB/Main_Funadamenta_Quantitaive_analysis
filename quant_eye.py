@@ -14,7 +14,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 import re
 
-# Download NLTK resources (if not already downloaded)
+
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
@@ -516,7 +516,7 @@ elif options == "Company Search":
                 st.plotly_chart(fig_debt_equity, use_container_width=True)
             
             # Heatmap for Metric Deviations
-            st.subheader("🔥 Metric Deviations Over Time")
+            st.subheader(" Metric Deviations Over Time")
             deviations = calculate_metric_deviations(financials)
             heatmap_fig = create_heatmap(deviations)
             if heatmap_fig:
@@ -532,15 +532,15 @@ elif options == "Document Upload":
             text, bullet_points, key_phrases = extract_and_summarize_pdf(uploaded_file)
         
         # Display Extracted Text in an Expandable Section
-        with st.expander("📝 View Extracted Text"):
+        with st.expander(" View Extracted Text"):
             st.text_area("Extracted Text", text, height=300)
         
         # Display Summary in an Expandable Section
-        with st.expander("📌 View Summary (Bullet Points)"):
+        with st.expander(" View Summary (Bullet Points)"):
             st.markdown(bullet_points)
         
         # Display Key Phrases in an Expandable Section
-        with st.expander("🔑 View Key Phrases"):
+        with st.expander("View Key Phrases"):
             st.markdown(", ".join([f"**{phrase}**" for phrase in key_phrases]))
 
 # Top 10 Companies Analysis
@@ -575,7 +575,7 @@ elif options == "Top 10 Companies Analysis":
             
             # Calculate Ratios
             ratios = calculate_ratios(financials, balance_sheet)
-            st.subheader("📈 Financial Ratios")
+            st.subheader(" Financial Ratios")
             col4, col5, col6 = st.columns(3)
             with col4:
                 st.metric("P/E Ratio", f"{ratios.get('P/E Ratio', 'N/A'):.2f}" if isinstance(ratios.get('P/E Ratio'), (int, float)) else "N/A")
@@ -587,11 +587,11 @@ elif options == "Top 10 Companies Analysis":
             # AI Recommendation
             sentiment = analyze_sentiment(selected_company)
             recommendation = generate_recommendation(ratios, sentiment)
-            st.subheader("🤖 AI Recommendation")
+            st.subheader(" AI Recommendation")
             st.success(f"Recommendation: {recommendation}")
             
             # Visualizations
-            st.subheader("📊 Visualizations")
+            st.subheader(" Visualizations")
             fig_revenue, fig_debt_equity = create_visualizations(financials, balance_sheet)
             if fig_revenue:
                 st.plotly_chart(fig_revenue, use_container_width=True)
@@ -599,7 +599,7 @@ elif options == "Top 10 Companies Analysis":
                 st.plotly_chart(fig_debt_equity, use_container_width=True)
             
             # Heatmap for Metric Deviations
-            st.subheader("🔥 Metric Deviations Over Time")
+            st.subheader(" Metric Deviations Over Time")
             deviations = calculate_metric_deviations(financials)
             heatmap_fig = create_heatmap(deviations)
             if heatmap_fig:
